@@ -9,6 +9,10 @@ app.use(bodyParser.json());
 app.use('/login', loginRouter);
 app.use('/account', accountRouter);
 app.use('/transfer', transferRouter);
+app.get('/ping', async (req, res) => {
+  const ping = "ping";
+  res.json(ping)
+})
 
 app.listen(process.env.PORT, () => {
   console.log(`Rodando na porta ${process.env.PORT}`);
