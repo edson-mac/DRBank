@@ -7,8 +7,10 @@ module.exports = async (req, res, next) => {
 
     if (!transferValue) return res.status(400).json({ message: '"transferValue" is required' });
 
+    if (!/^\d+$/.test(transferValue)) return res.status(400).json({ message: 'TransferValue deve conter apenas números' });
+
     if (Number(transferValue) > transferLimit) return res.status(400).json({
-        message: 'Transferencia acima do limite de R$ 2000'
+        message: 'Transferência acima do limite de R$ 2000'
     });
 
     next();

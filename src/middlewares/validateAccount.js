@@ -11,7 +11,7 @@ module.exports = async (req, res, next) => {
         message: 'Cpf precisa ter 11 digitos'
     });
 
-    if (!/^\d+$/.test(cpf)) return res.status(400).json({ message: 'cpf deve conter apenas numeros' });
+    if (!/^\d+$/.test(cpf)) return res.status(400).json({ message: 'Cpf deve conter apenas números' });
 
     next();
 };

@@ -1,7 +1,7 @@
 const connection = require(`../models/connection`)
 require('dotenv').config();
 
-const dbName = process.env.DB_NAME;
+const dbName = process.env.MYSQL_DATABASE;
 
 const createTransfer = async ({remetente, destinatario, transferValue}) => {
     await connection.execute(
