@@ -1,9 +1,7 @@
-require('dotenv').config();
 const express = require('express');
 const bodyParser = require('body-parser');
 const { loginRouter, accountRouter, transferRouter } = require(`./src/routers`);
 const connection = require(`./src/models/connection`);
-require('dotenv').config();
 
 const dbName = process.env.DB_NAME;
 
