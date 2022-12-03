@@ -23,4 +23,16 @@ const getSaldo = async (req, res, next) => {
 
 };
 
-module.exports = { createAccount, getSaldo };
+const createDeposito = async (req, res, next) => {
+  const { cpf } = req.tokenData;
+  const { deposito } = req.body;
+  try {
+    const account = await accountService.createDeposito({ cpf, deposito });
+    return res.status(account.code).json(account.message);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+}
+
+module.exports = { createAccount, getSaldo, createDeposito };

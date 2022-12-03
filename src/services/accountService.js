@@ -13,4 +13,13 @@ const createAccount = async ({ name, cpf}) => {
     const result = await accountModel.findSaldo(cpf)
     return { code: 201, message: result }; }
 
-   module.exports = { createAccount, getSaldo };  
+    const createDeposito = async ({ cpf, deposito }) => {
+    const conta = await accountModel.findAccount(cpf);
+    if (!conta) return { code: 409, message: 'Conta nao existe' };
+    await accountModel.updateSaldo({id: conta.id, value: conta.saldo + Number(deposito)})
+    return { code: 201, message: `Deposito no valor de ${deposito} realizado com sucesso` }; }
+
+
+
+
+   module.exports = { createAccount, getSaldo, createDeposito };  
