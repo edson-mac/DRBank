@@ -8,7 +8,7 @@ const createTransfer = async (req, res, next) => {
         const tokenCheck = jwt.decode(authorization);
         const remetenteCpf = tokenCheck.data.cpf;
         const transfer = await transferService.createTransfer({ remetenteCpf, destinatario, transferValue });
-        return res.status(transfer.code).json(transfer.message);
+        return res.status(transfer.code).json({message: transfer.message});
     } catch (error) {
         console.log(error);
         next(error);
