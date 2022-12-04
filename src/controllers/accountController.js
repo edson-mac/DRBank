@@ -15,7 +15,7 @@ const getSaldo = async (req, res, next) => {
   const { cpf } = req.tokenData;
   try {
     const account = await accountService.getSaldo({ cpf });
-    return res.status(account.code).json({message: account.message});
+    return res.status(account.code).json(account.message);
   } catch (error) {
     console.log(error);
     next(error);
