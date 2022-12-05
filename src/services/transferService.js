@@ -9,6 +9,7 @@ const createTransfer = async ({ remetenteCpf, destinatario, transferValue }) => 
     const saldoRemetente = await accountModel.findSaldo(remetenteCpf)
     console.log(transferValue);
     if (Number(transferValue) > Number(saldoRemetente.saldo)) return { code: 409, message: 'Quantia nao disponivel'}
+    if (remetenteCpf === destinatario) return { code: 409, message: 'Nao e possivel transferir para a mesma conta'}
     const saldoDestinatario = await accountModel.findSaldo(destinatario);
     const remetenteNewSaldo = Number(saldoRemetente.saldo) - Number(transferValue);
     const destinatarioNewSaldo = Number(saldoDestinatario.saldo) + Number(transferValue);
